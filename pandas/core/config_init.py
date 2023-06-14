@@ -299,6 +299,7 @@ def is_terminal() -> bool:
     Returns True if Python is running in a terminal or False if not.
     """
     try:
+        from IPython import get_ipython
         # error: Name 'get_ipython' is not defined
         ip = get_ipython()  # type: ignore[name-defined]
     except NameError:  # assume standard Python interpreter in a terminal
@@ -308,6 +309,9 @@ def is_terminal() -> bool:
             return False
         else:  # IPython in a terminal
             return True
+
+result = is_terminal()
+print("is running in terminal:", result)
 
 
 with cf.config_prefix("display"):
